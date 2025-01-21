@@ -18,7 +18,6 @@ class TransactionFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => Str::uuid(),
             'user_id' => User::factory(),
             'invoice_id' => Invoice::factory(),
             'type' => $this->faker->randomElement(['payment', 'withdrawal']),

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BalancesController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\TransactionsController;
+use App\Http\Controllers\UserDashboardController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -12,8 +13,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/test', function (Request $request) {
-  return User::all();
+Route::middleware('auth:sanctum')->group(function () {
+  Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -21,6 +22,8 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
 Route::middleware('auth:sanctum')->group(function () {
+  Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+
   Route::get('/invoices', [InvoicesController::class, 'index']);
   Route::post('/invoices', [InvoicesController::class, 'store']);
   Route::get('/invoices/{id}', [InvoicesController::class, 'show']);
