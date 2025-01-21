@@ -1,49 +1,49 @@
-# Laravel Payments Manager
+# laravel payments api
 
-### Simple API for managing transactions, invoices, and user balances.
+### simple api for managing transactions, invoices, and user balances
 
 ---
 
 ## ✨ Features
 - **User Authentication** – Token-based authentication with Laravel Sanctum.
-- **Payments & Withdrawals** – Handle user transactions, including deposits & withdrawals.
-- **Invoice Management** – Create, track, and mark invoices as paid or pending.
-- **Balance Tracking** – Automatically update and retrieve user balances.
+- **Payments & Withdrawals** – Handle user transactions, including deposits and withdrawals.
+- **Invoice Management** – Handle invoices creation and edit.
+- **Balance Tracking** –  Update the user balances.
 
 ---
 
 ## 🚀 Installation
 
-### 1️⃣ Clone the Repository
+### 1 - Clone the Repository
 ```sh
 git clone https://github.com/YOUR_USERNAME/laravel-payments-manager.git
 cd laravel-payments-manager
 ```
 
-### 2️⃣ Install Dependencies
+### 2 -  Install Dependencies
 ```sh
 ./vendor/bin/sail composer install
 ```
 
-### 3️⃣ Set Up Environment
+### 3 - Set Up Environment
 ```sh
 cp .env.example .env
 ./vendor/bin/sail artisan key:generate
 ```
 
-### 4️⃣ Set Up Database
+### 4 - Set Up Database
 ```sh
 ./vendor/bin/sail artisan migrate --seed
 ```
 
-### 5️⃣ Start the Server
+### 5 - Start the Server
 ```sh
 ./vendor/bin/sail up -d
 ```
 
 ---
 
-## 🔑 Authentication
+## Authentication
 This project uses Laravel Sanctum for authentication. To access protected routes, include a Bearer Token in the request header.
 
 ```sh
@@ -52,22 +52,21 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 ---
 
-## 📖 API Endpoints
+## API Endpoints
 
-### 📝 User Authentication
+### User Authentication
 | Method | Endpoint       | Description            |
 |--------|----------------|------------------------|
-| POST   | /api/register  | Register a new user    |
 | POST   | /api/login     | Log in and get a token |
 | POST   | /api/logout    | Log out and revoke token|
 
-### 💳 Transactions
+### Transactions
 | Method | Endpoint            | Description                |
 |--------|---------------------|----------------------------|
 | POST   | /api/transactions   | Create a payment or withdrawal |
 | GET    | /api/transactions   | Get user transactions      |
 
-### 🧾 Invoices
+### Invoices
 | Method | Endpoint            | Description                |
 |--------|---------------------|----------------------------|
 | POST   | /api/invoices       | Create an invoice          |
