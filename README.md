@@ -1,5 +1,7 @@
 # laravel payments api
 
+<img width="1084" alt="image" src="https://github.com/user-attachments/assets/6a62d645-2146-4248-bbcb-76773962e0d5" />
+
 ### simple api for managing transactions, invoices, and user balances
 
 ---
@@ -74,9 +76,18 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 | PUT    | /api/invoices/{id}  | Update an invoice          |
 | DELETE | /api/invoices/{id}  | Delete an invoice          |
 
+### User Dashboard
+
+| Method | Endpoint            | Description                |
+|--------|---------------------|----------------------------|
+| GET   | /api/dashboard      | Return user financial dashboard         |
+
 ---
 
 ## ✅ Running Tests
+
+<img width="332" alt="image" src="https://github.com/user-attachments/assets/98b764dc-e5c8-40b0-834d-9c529b3f7c46" />
+
 To run PHPUnit tests:
 
 ```sh
