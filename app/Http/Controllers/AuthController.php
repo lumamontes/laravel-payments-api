@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+
+class AuthController extends Controller
+{
+    /**
+     * User Login (Generate Token)
+     */
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json([
+                'email' => ['The provided credentials are incorrect.'],
+            ], 401);
+        }
+
+        // Create token
+        $token = $user->createToken('api-token')->plainTextToken;
+
+        return response()->json(['token' => $token], 200);
+    }
+
+    /**
+     * User Logout (Revoke Token)
+     */
+    public function logout(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return response()->json(['message' => 'Logged out successfully'], 200);
+    }
+}
